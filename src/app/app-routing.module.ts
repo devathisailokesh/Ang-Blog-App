@@ -13,7 +13,7 @@ const routes: NewType = [
  { path: '' , component: HomeComponent },
  { path: 'category', component: SingleCategoryComponent },
  { path: 'post', component: SinglePostComponent },
- { path: 'aboutus', component: AboutUsComponent },
+ { path: 'about-us', component: AboutUsComponent },
  { path: 'terms-conditions', component: TermsAndConditionsComponent },
  { path: 'contact', component: ContactUsComponent },
 ];
