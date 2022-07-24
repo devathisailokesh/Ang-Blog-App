@@ -36,7 +36,7 @@ body{
     background-color: var(--primary-color);
 
 }
-.bg-theme {
+.bg-secondary-theme {
     background-color: var(--secondary-color);
 
 }
