@@ -1,31 +1,37 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
+
             <div class="card shadow-effect">
-                <img src="https://images.pexels.com/photos/1227497/pexels-photo-1227497.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="card-img-top img-fluid">
+                <img src="{{ postData.postImgPath }}" alt="" class="card-img-top img-fluid">
                 <div class="card-body">
-                    <small class="bg-light text-danger text-center"> Desgin </small>
-                    <small class="bg-light text-sucess text-center ml-2"> &nbsp; Featured </small>
-                    <small class="bg-light text- text-info text-center ml-2"> &nbsp;Views-100,256 </small>
-                    <small class="bg-light text-warning text-center ml-2">&nbsp;LAST UPDATED - SEP 20, 2022 </small>
+                    <small class="bg-light text-danger text-center"> {{ postData.category.category }}</small>
+                    <small class="bg-light text-sucess text-center ml-2" *ngIf = "postData.isFeatured"> Featured </small>
+                    <small class="bg-light text-info text-center ml-2"> Views - {{ postData.views }} </small>
+                    <small class="bg-light text-warning text-center ml-2"> LAST UPDATED - {{ postData.createdAt.toMillis() | date }} </small>
                 
-                    <h1 class="mt-3 mb-3">How To START A BLOG IN 2023 EDITED NEW CATEGORY</h1>
-                    <p>Video blogs or Vlogs, call them what you will, but with the rise in popularity of blogging on YouTube, video blogs are the new in-thing. Updating your blog in video format can have many benefits for your site
-                       You might think it contained the benefits of staying away from the blogging industry, but instead, it had 15 reasons to quit blogging written in negatives that highlighted all the great things blogging can do for your life.
+                    <h1 class="mt-3 mb-3">{{postData.title}}</h1>
+                    <p [innerHtml] = "postData.content" ></p>
 
-                       A funny blog post like this doesn’t always have to be related to your blog topic – it’s for fun – a way to make your readers chortle into their morning cuppa.
-
-                      Your post could be pure sarcasm or irony. Consider adding amusing GIFs for greater effect. The idea is to mix things up with a funny spin on things, that could be an instant hit.
-                    </p>
                 </div>
             </div>
+
             <app-comment-form></app-comment-form>
             <app-comment-list></app-comment-list>
+
         </div>
+
         <div class="col-md-3">
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
+
+            <div *ngFor = "let similarPost of similarPostArray">
+                <app-post-card [postData] = 'similarPost' ></app-post-card>
+            </div>
+            
+           
+          
+            
+            
         </div>
     </div>
+
 </div>

@@ -1,4 +1,17 @@
-<div class="bg-theme">
-    <h1> General Knowledge</h1>
-    <p>An online journal in which you share your thoughts about a particular subject with readers</p>
+<div class="bg-theme p-5">
+    <div class="container">
+        <h1 class="text-white"> {{ categoryObj.category }} </h1>
+        <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+
+        <div class="col-md-4 mb-3" *ngFor="let post of postsArray">
+            <app-post-card [postData] = "post" ></app-post-card>
+        </div>
+       
+    </div>
 </div>

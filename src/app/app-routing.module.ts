@@ -11,8 +11,9 @@ type NewType = Routes;
 
 const routes: NewType = [
  { path: '' , component: HomeComponent },
- { path: 'category', component: SingleCategoryComponent },
- { path: 'post', component: SinglePostComponent },
+ { path: 'category/:category:id', component: SingleCategoryComponent },
+ { path: 'post/:id', component: SinglePostComponent },
+ 
  { path: 'about', component: AboutUsComponent },
  { path: 'terms-conditions', component: TermsAndConditionsComponent },
  { path: 'contact', component: ContactUsComponent },
