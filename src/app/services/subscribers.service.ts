@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +8,13 @@ export class SubscribersService {
 
   constructor( private afs: AngularFirestore ) { }
 
-  addSubs(subData) {
+  addSubs(subData: any) {
     this.afs.collection('subscribers').add(subData).then(() => {
         console.log('Subscriber Saved Sucessfully');
     });
   }
 
-  checkSubs( subEmail ) {
+  checkSubs( subEmail: any ) {
     return this.afs.collection('subscribers', ref => ref.where('email', '==', subEmail)).get()
   }
 

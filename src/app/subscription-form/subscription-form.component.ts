@@ -5,7 +5,7 @@ import { SubscribersService } from '../services/subscribers.service';
 @Component({
   selector: 'app-subscription-form',
   templateUrl: './subscription-form.component.html',
-  styleUrls: ['./subscription-form.component.css']
+  styleUrls: ['./subscription-form.component.css'],
 })
 export class SubscriptionFormComponent implements OnInit {
 
@@ -29,7 +29,7 @@ export class SubscriptionFormComponent implements OnInit {
     this.subService.checkSubs(subData.email).subscribe(val => {
         console.log(val);
 
-        if(val.any){
+        if(val.empty){
           this.subService.addSubs(subData);
           this.isSubscribed = true;
         }
