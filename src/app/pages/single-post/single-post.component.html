@@ -1,37 +1,121 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-9">
-
-            <div class="card shadow-effect">
-                <img src="{{ postData.postImgPath }}" alt="" class="card-img-top img-fluid">
-                <div class="card-body">
-                    <small class="bg-light text-danger text-center"> {{ postData.category.category }}</small>
-                    <small class="bg-light text-sucess text-center ml-2" *ngIf = "postData.isFeatured"> Featured </small>
-                    <small class="bg-light text-info text-center ml-2"> Views - {{ postData.views }} </small>
-                    <small class="bg-light text-warning text-center ml-2"> LAST UPDATED - {{ postData.createdAt.toMillis() | date }} </small>
-                
-                    <h1 class="mt-3 mb-3">{{postData.title}}</h1>
-                    <p [innerHtml] = "postData.content" ></p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../../app.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+    
+                <div class="card shadow-effect">
+                    <img src="{{ postData.postImgPath }}" alt="" class="card-img-top img-fluid">
+                    <div class="card-body">
+                        <small class="bg-light text-danger text-center"> {{ postData.category.category }}</small>
+                        <small class="bg-light text-sucess text-center ml-2" *ngIf = "postData.isFeatured"> Featured </small>
+                        <small class="bg-light text-info text-center ml-2"> Views - {{ postData.views }} </small>
+                        <small class="bg-light text-warning text-center ml-2"> LAST UPDATED - {{ postData.createdAt.toMillis() | date }} </small>
+                    
+                        <h1 class="mt-3 mb-3">{{postData.title}}</h1>
+                        <p [innerHtml] = "postData.content" ></p>
+                        
+                        <form id="form1" (ngSubmit)="apipasssem()">
+                            <h2>Semantic Analysis</h2>
+                            <!-- <input type="text" style="color:white ;background:rgb(189, 249, 177);display: none;" value={{postData.content}}> -->
+                            <div class="vertical-center"><button id ="sem" >Semantics</button></div>
+                        </form>
+                        <textarea placeholder="Semantic Analysis of the above blog description"  name="semantic" id="semantic"  row="60" cols="100" role="textbox" aria-autocomplete="list" aria-haspopup="true">{{postData.sem}}</textarea><br><br>
+    
+                        <form id="form2" (ngSubmit)="apipasssum()">
+                            <h2>Text Summarize</h2>
+                            <!-- <input type="text" value={{postData.content}} style="display:none;"> -->
+                            <div class="vertical-center"><button id ="sum" >Summarize</button></div>
+                        </form>
+                        <p [innerHtml] = "postData.sum" ></p><br><br>
+    
+                    </div>
                 </div>
+                <!-- <script>
+                    let form1 = document.getElementById('form1')
+                    form1.addEventListener('submit', async (e)=>{
+                        e.preventDefault()
+                        let formdata = new  FormData(form)        
+                        let response1 = await fetch('http://127.0.0.1:5000/im_size',{method:"POST",body:formdata})
+                        .then(response => response.json())
+                        .then((data)=>document.getElementById('semantic').innerHTML=data.result)   
+                    });
+                </script>
+                <script>
+                    let form2 = document.getElementById('form2')
+                    form2.addEventListener('submit', async (e)=>{
+                        e.preventDefault()
+                        let formdata = new  FormData(form)        
+                        let response1 = await fetch('http://127.0.0.1:5000/im_size',{method:"POST",body:formdata})
+                        .then(response => response.json())
+                        .then((data)=>document.getElementById('summarize').innerHTML=data.result)
+                        
+                    });
+                </script> -->
+                <!-- <script>
+                    let form2 = document.getElementById('form2')
+                    form2.addEventListener('sum',async(e)=>{
+                        e.preventDefault()
+                        let formdata = new FormData(form2)
+                        const { TextAnalyticsClient, AzureKeyCredential } = require("@azure/ai-text-analytics");
+                        const endpoint = "https://ang-blog.cognitiveservices.azure.com/";
+                        const key = "7267df9121f447a88141cb8a9130ec8a";
+                        const client = new TextAnalyticsClient(endpoint, new AzureKeyCredential(key));
+                        const documents = [{ id: "1", language: "en", text: 'sample text to be summarized' }];
+                        const result = await client.summarize(documents);
+                        console.log(result);
+                    });
+                </script> -->
+                <!-- <script>
+                    const { TextAnalyticsClient, AzureKeyCredential } = require("@azure/ai-text-analytics");
+                    const client = new TextAnalyticsClient("https://ang-blog.cognitiveservices.azure.com/", new AzureKeyCredential("7267df9121f447a88141cb8a9130ec8a"));
+                    const documents = [
+                    "I did not like the restaurant. The food was too spicy.",
+                    "The restaurant was decorated beautifully. The atmosphere was unlike any other restaurant I've been to.",
+                    "The food was yummy. :)"
+                    ];
+                    async function main() {
+                    const results = await client.analyzeSentiment(documents);
+                    for (const result of results) {
+                        if (result.error === undefined) {
+                        console.log("Overall sentiment:", result.sentiment);
+                        console.log("Scores:", result.confidenceScores);
+                        } else {
+                        console.error("Encountered an error:", result.error);
+                        }
+                    }
+                    }
+    
+                    main();
+                </script> -->
+                
+    
+                <app-comment-form></app-comment-form>
+                <app-comment-list></app-comment-list>
+    
             </div>
-
-            <app-comment-form></app-comment-form>
-            <app-comment-list></app-comment-list>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div *ngFor = "let similarPost of similarPostArray">
-                <app-post-card [postData] = 'similarPost' ></app-post-card>
+    
+            <div class="col-md-3">
+    
+                <div *ngFor = "let similarPost of similarPostArray">
+                    <app-post-card [postData] = 'similarPost' ></app-post-card>
+                </div>
+                
+               
+              
+                
+                
             </div>
-            
-           
-          
-            
-            
         </div>
+    
     </div>
-
-</div>
+</body>
+</html>
