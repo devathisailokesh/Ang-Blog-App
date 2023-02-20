@@ -140,11 +140,23 @@ export class SinglePostComponent implements OnInit {
     .subscribe(data => this.postData.sum = data['result']);
   }
    
-  apipasslang(){
-    const API = 'http://127.0.0.1:5000/lang'
+  apipasskey(){
+    const API = 'http://127.0.0.1:5000/phr'
     this.http.post<any>(API, this.postData.content)
-    .subscribe(data => this.postData.lang = data['result']);
+    .subscribe(data => this.postData.key = data['result']);
   }
 
+
+  apipassent(){
+    const API = 'http://127.0.0.1:5000/ent'
+    this.http.post<any>(API, this.postData.content)
+    .subscribe(data => this.postData.ent = data['result']);
+  }
+
+  apipasstra(){
+    const API = 'http://127.0.0.1:5000/tra'
+    this.http.post<any>(API, this.postData.content)
+    .subscribe(data => this.postData.tra = data['result']);
+  }
 
 }

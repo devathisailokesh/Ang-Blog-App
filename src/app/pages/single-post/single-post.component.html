@@ -28,7 +28,11 @@
                             <!-- <input type="text" style="color:white ;background:rgb(189, 249, 177);display: none;" value={{postData.content}}> -->
                             <div class="vertical-center"><button id ="sem" >Semantics</button></div>
                         </form>
-                        <textarea placeholder="Semantic Analysis of the above blog description"  name="semantic" id="semantic"  row="60" cols="100" role="textbox" aria-autocomplete="list" aria-haspopup="true">{{postData.sem}}</textarea><br><br>
+                        <br><br>
+                        <p [innerHTML]="postData.sem"></p>
+                        <br>
+                        <br>
+                        <br>
     
                         <form id="form2" (ngSubmit)="apipasssum()">
                             <h2>Text Summarize</h2>
@@ -36,6 +40,37 @@
                             <div class="vertical-center"><button id ="sum" >Summarize</button></div>
                         </form>
                         <p [innerHtml] = "postData.sum" ></p><br><br>
+
+                        <br>
+                        <br>
+                        <br>
+
+                        <form id="form3" (ngSubmit)="apipasskey()">
+                            <h2>Key Phrases Extraction</h2>
+                            <!-- <input type="text" value={{postData.content}} style="display:none;"> -->
+                            <div class="vertical-center"><button id ="sum" >Phrase Extraction</button></div>
+                        </form>
+                        <p [innerHtml] = "postData.key" ></p><br><br>
+
+                        <form id="form4" (ngSubmit)="apipassent()">
+                            <br>
+                            <br>
+                            <h2>Entity Recognition</h2>
+                            <!-- <input type="text" value={{postData.content}} style="display:none;"> -->
+                            <div class="vertical-center"><button id ="sum" >Entity Recognition</button></div>
+                        </form>
+                        <p [innerHtml] = "postData.ent" ></p><br><br>
+
+
+
+                        <form id="form4" (ngSubmit)="apipasstra()">
+                            <br>
+                            <br>
+                            <h2>Translate this text to hindi</h2>
+                            <!-- <input type="text" value={{postData.content}} style="display:none;"> -->
+                            <div class="vertical-center"><button id ="sum" >Translate</button></div>
+                        </form>
+                        <p [innerHtml] = "postData.tra" ></p><br><br>
     
                     </div>
                 </div>
